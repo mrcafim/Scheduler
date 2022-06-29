@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<EventQueryResult>
+
+@{
     ViewData["DayEvents"] = "Events for the day";
 }
 <div class="container">
@@ -35,25 +37,7 @@
                                 <th scope="col">Saturday</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>14</td>
-                            </tr>
+                        <tbody id="calendarDays">
                         </tbody>
                     </table>
                 </div>
@@ -81,12 +65,33 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td> teste</td>
-                                <td> test</td>
-                                <td> teste</td>
-                            </tr>
+                        <tbody id="eventsDay">
+                            @if (Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @(item.StartDate.ToShortDateString())
+                                        </td>
+                                        <td>
+                                            @(item.Title)
+                                        </td>
+                                        <td>
+                                            @(item.Location)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3">
+                                        <p>No events were found for this day.</p>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -94,6 +99,7 @@
         </div>
     </div>
 </div>
+
 <style>
     .div-calendar {
         border-right: 1px solid;
@@ -111,7 +117,73 @@
         border-bottom: 1px solid;
     }
 
-    .content-calendar{
+    .content-calendar {
         text-align: center;
     }
+    .selected {
+        background-color: #479ad6 !important;
+    }
 </style>
+
+@section scripts
+{
+<script type="text/javascript">
+
+    const calendarDays = document.getElementById('calendarDays');
+
+    $(document).ready(function(){
+        var innerHtml = "";
+        const newDate = new Date();
+        const firstDay = new Date(newDate.getFullYear(), newDate.getMonth(), 1);
+        const initialWeekDay = firstDay.getDay();
+        const daysInMonth = new Date(newDate.getFullYear(), newDate.getMonth()+1, 0).getDate();
+        const day = firstDay;
+
+        innerHtml += "<tr>";
+        for(let i = 0; i < initialWeekDay + daysInMonth; i++) {
+           if(i >= initialWeekDay){
+               if(i % 7 == 0){
+                   innerHtml += "</tr><tr>";
+               }
+                innerHtml += "<td class='scheduleDay' id='" + (day.getMonth() + 1) + "/" + day.getDate() + "/" + day.getFullYear() +"'>" + day.getDate() +"</td>";
+                day.setDate(day.getDate() + 1);
+           }else{
+                innerHtml += "<td></td>";
+           }
+        }
+
+        calendarDays.innerHTML = innerHtml;
+        console.log('Ready disparado');
+
+        $(".scheduleDay").on("click", function() {
+            $(".scheduleDay").removeClass('selected');
+            $(this).addClass('selected');
+            var dt = $(this).attr("id");
+            $.ajax({
+                url: './Get',
+                cache: false,
+                data: {
+                    date: dt
+                }
+            }).done(function(data) {
+                $("#eventsDay").html("");
+                var innerHtml = "";
+                if(data.length > 0){
+                    for (var i = 0; i < data.length; i++) {
+                        var item = data[i];
+                        innerHtml += "<tr>";
+                        innerHtml += "<td>" + new Date(item.startDate).toLocaleDateString("en-US") + "</td>";
+                        innerHtml += "<td>" + item.title + "</td>";
+                        innerHtml += "<td>" + item.location + "</td>";
+                        innerHtml += "</tr>";
+                    }
+                }
+                else{
+                    innerHtml += "<tr><td colspan='3'><p>No events were found for this day.</p></td></tr>";
+                }
+                $("#eventsDay").html(innerHtml);
+            });
+        });
+     });
+</script>
+}
