@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["DayEvents"] = "Events for the day";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 div-calendar">
+            <div class="container-calendar border-right-2">
+                <div class="header-calendar">
+                    <div class="row">
+                        <div class="col-md-2 text-left">
+                            <button class="btn btn-primary">
+                                <span class="fas fa-arrow-left"></span>
+                            </button>
+                        </div>
+                        <div class="col-md-8 text-center">
+                            <span>June</span>
+                        </div>
+                        <div class="col-md-2 d-flex flex-row justify-content-end">
+                            <button class="btn btn-primary">
+                                <span class="fas fa-arrow-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-calendar">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sunday</th>
+                                <th scope="col">Monday</th>
+                                <th scope="col">Tuesday</th>
+                                <th scope="col">Wednesday</th>
+                                <th scope="col">Thursday</th>
+                                <th scope="col">Friday</th>
+                                <th scope="col">Saturday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4 p-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>@ViewData["DayEvents"]</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Date
+                                </th>
+                                <th scope="col">
+                                    Title
+                                </th>
+                                <th scope="col">
+                                    Location
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> teste</td>
+                                <td> test</td>
+                                <td> teste</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .div-calendar {
+        border-right: 1px solid;
+    }
+
+    .container-calendar {
+        background-color: #c5c7c6;
+        border: 1px solid;
+        color: #fff;
+    }
+
+    .header-calendar {
+        padding: 10px;
+        font-size: 26px;
+        border-bottom: 1px solid;
+    }
+
+    .content-calendar{
+        text-align: center;
+    }
+</style>
