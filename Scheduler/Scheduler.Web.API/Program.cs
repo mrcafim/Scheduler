@@ -1,11 +1,52 @@
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Scheduler.Web.infra.IoC;
+using Scheduler.Web.Infra.Data.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Configuration
+    .SetBasePath(builder.Environment.ContentRootPath)
+    .AddJsonFile("appsettings.json", true, true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
+    .AddEnvironmentVariables();
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Data")));
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder => builder
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .SetIsOriginAllowed(_ => true)
+            .AllowCredentials());
+});
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(s =>
+{
+    s.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Scheduler API",
+        Description = "Scheduler Swagger surface",
+        Contact = new OpenApiContact
+        {
+            Name = "Scheduler",
+            Email = "dev@scheduler.com",
+            Url = new Uri("https://scheduler.com")
+        }
+    });
+});
+
+builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddDependencyInjectionConfiguration();
 
 var app = builder.Build();
 
@@ -19,6 +60,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("CorsPolicy");
 
 app.MapControllers();
 
