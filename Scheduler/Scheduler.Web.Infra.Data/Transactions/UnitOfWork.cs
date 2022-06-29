@@ -3,11 +3,6 @@ using Scheduler.Web.Domain.Core.Bus;
 using Scheduler.Web.Domain.Core.Notifications;
 using Scheduler.Web.Domain.Core.Transactions;
 using Scheduler.Web.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scheduler.Web.Infra.Data.Transactions
 {

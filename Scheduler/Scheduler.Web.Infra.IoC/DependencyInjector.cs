@@ -6,11 +6,6 @@ using Scheduler.Web.Domain.Core.Transactions;
 using Scheduler.Web.Infra.Bus;
 using Scheduler.Web.Infra.Data.Context;
 using Scheduler.Web.Infra.Data.Transactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scheduler.Web.Infra.IoC
 {

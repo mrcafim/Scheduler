@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Scheduler.Web.Infra.IoC;
 using Scheduler.Web.Infra.Data.Context;
+using Scheduler.Web.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 

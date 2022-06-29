@@ -4,11 +4,6 @@ using Scheduler.Web.Domain.Core.Commands;
 using Scheduler.Web.Domain.Events.Commands;
 using Scheduler.Web.Domain.Events.Queries;
 using Scheduler.Web.Domain.Events.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scheduler.Web.Application.Services
 {

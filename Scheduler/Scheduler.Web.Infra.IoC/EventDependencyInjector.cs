@@ -7,11 +7,6 @@ using Scheduler.Web.Domain.Events.Commands;
 using Scheduler.Web.Domain.Events.Commands.Handlers;
 using Scheduler.Web.Domain.Events.Repositories;
 using Scheduler.Web.Infra.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scheduler.Web.Infra.IoC
 {

@@ -3,11 +3,6 @@ using Scheduler.Web.Domain.Events.Entities;
 using Scheduler.Web.Domain.Events.Queries;
 using Scheduler.Web.Domain.Events.Repositories;
 using Scheduler.Web.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scheduler.Web.Infra.Data.Repositories
 {
