@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Scheduler.Web.Application\Scheduler.Web.Application.csproj" />
     <ProjectReference Include="..\Scheduler.Web.Domain.Core\Scheduler.Web.Domain.Core.csproj" />
     <ProjectReference Include="..\Scheduler.Web.Domain\Scheduler.Web.Domain.csproj" />
     <ProjectReference Include="..\Scheduler.Web.Infra.Bus\Scheduler.Web.Infra.Bus.csproj" />

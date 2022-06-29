@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Scheduler.Web.Application.Interfaces;
+using Scheduler.Web.Application.Services;
 using Scheduler.Web.Domain.Core.Commands;
 using Scheduler.Web.Domain.Events.Commands;
 using Scheduler.Web.Domain.Events.Commands.Handlers;
@@ -22,6 +24,9 @@ namespace Scheduler.Web.infra.IoC
             services.AddScoped<IRequestHandler<AddEventCommand, CommandResult>, EventCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteEventCommand, CommandResult>, EventCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateEventCommand, CommandResult>, EventCommandHandler>();
+
+            // Services
+            services.AddScoped<IEventAppService, EventAppService>();
 
             // Repositories
             services.AddScoped<IEventRepository, EventRepository>();
