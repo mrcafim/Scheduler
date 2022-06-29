@@ -6,4 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Scheduler.Web.Domain\Scheduler.Web.Domain.csproj" />
+    <ProjectReference Include="..\Scheduler.Web.Infra.Data\Scheduler.Web.Infra.Data.csproj" />
+    <ProjectReference Include="..\Scheduler.Web.Infra.IoC\Scheduler.Web.Infra.IoC.csproj" />
+  </ItemGroup>
+
 </Project>

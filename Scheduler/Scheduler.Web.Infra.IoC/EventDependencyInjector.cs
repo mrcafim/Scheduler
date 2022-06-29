@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scheduler.Web.infra.IoC
+namespace Scheduler.Web.Infra.IoC
 {
 
     public static class EventDependencyInjector
