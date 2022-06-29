@@ -15,6 +15,7 @@ namespace Scheduler.Web.Domain.Events.Repositories
         void Update(Event _event);
         void Delete(Event _event);
         Task<IEnumerable<EventQueryResult>> GetAll();
+        Task<IEnumerable<EventQueryResult>> GetByDate(DateTime date);
         Task<EventQueryResult> GetByEvent(Guid id);
     }
 }

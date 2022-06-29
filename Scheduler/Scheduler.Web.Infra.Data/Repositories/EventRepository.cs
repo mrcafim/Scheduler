@@ -58,6 +58,28 @@ namespace Scheduler.Web.Infra.Data.Repositories
                 .OrderBy(x => x.StartDate)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<EventQueryResult>> GetByDate(DateTime date)
+        {
+            return await _context
+                .Events
+                .AsNoTracking()
+                .Where(x => x.Active == true
+                        && !x.Deleted
+                        && x.StartDate.Date == date.Date)
+                .Select(x => new EventQueryResult
+                {
+                    Id = x.Id,
+                    CreatedAt = x.CreatedAt,
+                    UpdatedAt = x.UpdatedAt,
+                    StartDate = x.StartDate,
+                    EndDate = x.EndDate,
+                    Title = x.Title,
+                    Description = x.Description,
+                    Location = x.Location
+
+                })
+                .ToListAsync();
+        }
 
         public async Task<EventQueryResult> GetByEvent(Guid id)
         {

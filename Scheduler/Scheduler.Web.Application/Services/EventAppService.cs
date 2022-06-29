@@ -29,6 +29,11 @@ namespace Scheduler.Web.Application.Services
         {
             return await _eventRepository.GetAll();
         }
+        public async Task<IEnumerable<EventQueryResult>> GetByDate(DateTime date)
+        {
+            return await _eventRepository.GetByDate(date);
+        }
+
         public async Task<EventQueryResult> GetById(Guid id)
         {
             return await _eventRepository.GetByEvent(id);
